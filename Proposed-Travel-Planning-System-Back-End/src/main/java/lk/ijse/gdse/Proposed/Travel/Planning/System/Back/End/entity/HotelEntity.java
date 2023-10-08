@@ -26,7 +26,6 @@ public class HotelEntity implements SuperEntity{
     private  String email;
     private  int contact_number;
     @OneToMany(mappedBy = "guide_id",cascade = CascadeType.ALL)
-
     private List<GuideEntity> guideEntities=new ArrayList<>();
     @OneToMany(mappedBy = "user_id",cascade = CascadeType.ALL)
     private List<UserEntity> userEntities=new ArrayList<>();
