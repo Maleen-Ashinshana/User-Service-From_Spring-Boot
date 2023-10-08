@@ -15,8 +15,11 @@ import lombok.ToString;
 public class DriverEntity implements SuperEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String driverId;
+    private String driver_id;
     private String driver_name;
     private int contact_number;
     private String driver_license_image;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "vehicle_id")
+    private  VehicleEntity vehicleEntity;
 }

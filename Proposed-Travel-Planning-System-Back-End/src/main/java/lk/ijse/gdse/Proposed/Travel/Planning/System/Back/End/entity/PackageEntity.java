@@ -18,5 +18,16 @@ public class PackageEntity implements SuperEntity {
     private String package_id;
     private String package_cetagory;
     private String video;
+    @ManyToOne
+    @JoinColumn(name = "hotel_id",referencedColumnName = "hotel_id")
+    private HotelEntity hotelEntity;
 
+    @ManyToOne
+    @JoinColumn(name = "vehicle_id",referencedColumnName = "vehicle_id")
+    private VehicleEntity vehicleEntity;
+    public PackageEntity(String package_id, String package_cetagory, String video) {
+        this.package_id = package_id;
+        this.package_cetagory = package_cetagory;
+        this.video = video;
+    }
 }
