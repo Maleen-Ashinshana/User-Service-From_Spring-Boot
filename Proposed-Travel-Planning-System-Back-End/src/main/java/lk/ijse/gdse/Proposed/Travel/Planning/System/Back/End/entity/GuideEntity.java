@@ -19,16 +19,21 @@ public class GuideEntity implements SuperEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String guide_id;
+    @Column(nullable = false)
     private String guide_name;
+    @Column(nullable = false)
     private String address;
+    @Column(nullable = false)
     private int age;
+    @Column(nullable = false)
     private int contact_number;
+    @Column(nullable = false)
     private String gender;
+    @Column(nullable = false)
     private String profile_picture;
 
-    @ManyToOne
-    @JoinColumn(name = "hotel_id",referencedColumnName = "hotel_id")
-    private HotelEntity hotelEntity;
+    @OneToMany(mappedBy = "service_id",cascade =CascadeType.ALL)
+    private List<MainTravelServiceEntity> mainTravelServiceEntities=new ArrayList<>();
 
     public GuideEntity(String guide_id, String guide_name, String address, int age, int contact_number, String gender, String profile_picture) {
         this.guide_id = guide_id;

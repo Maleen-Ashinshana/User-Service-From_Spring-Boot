@@ -19,22 +19,27 @@ public class VehicleEntity implements SuperEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String vehicle_id;
+    @Column(nullable = false)
     private String vehicle_brand;
+    @Column(nullable = false)
     private String vehicle_category;
+    @Column(nullable = false)
     private String vehicle_image;
+    @Column(nullable = false)
     private String fuel_type;
+    @Column(nullable = false)
     private String fuel_usage;
+    @Column(nullable = false)
     private int seat_capacity;
+    @Column(nullable = false)
     private String transmission;
-    @ManyToOne
-    @JoinColumn(name = "hotel_id",referencedColumnName = "hotel_id")
-    private HotelEntity hotelEntity;
+    @OneToMany(mappedBy = "service_id",cascade =CascadeType.ALL)
+    private List<MainTravelServiceEntity> mainTravelServiceEntities=new ArrayList<>();
 
-    @OneToMany(mappedBy = "user_id",cascade = CascadeType.ALL)
-    private List<UserEntity> userEntities=new ArrayList<>();
-
-    @OneToMany(mappedBy = "package_id",cascade = CascadeType.ALL)
-    private List<PackageEntity> packageEntities=new ArrayList<>();
+    @OneToMany(mappedBy = "vehicle_image_id",cascade =CascadeType.ALL)
+    private List<VehicleImageEntity> vehicle_image_id=new ArrayList<>();
+    @OneToOne
+    private DriverEntity driverEntity;
 
     public VehicleEntity(String vehicle_id, String vehicle_brand, String vehicle_category, String vehicle_image, String fuel_type, String fuel_usage, int seat_capacity, String transmission) {
         this.vehicle_id = vehicle_id;

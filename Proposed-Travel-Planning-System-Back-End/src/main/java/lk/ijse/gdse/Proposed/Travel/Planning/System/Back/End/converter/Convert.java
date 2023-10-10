@@ -68,4 +68,10 @@ public class Convert {
     public  VehicleDTO toVehicleDTO(VehicleEntity  vehicleEntity){
         return modelMapper.map(vehicleEntity, VehicleDTO.class);
     }
+    public VehicleImageEntity toVehicleImageEntity(vehicleImageDTO vehicleImageDTO){
+        return modelMapper.map(vehicleImageDTO, VehicleImageEntity.class);
+    }
+    public  vehicleImageDTO toVehicleImageDTO(VehicleImageEntity  vehicleImageEntity){
+        return modelMapper.map(vehicleImageEntity, vehicleImageDTO.class);
+    }
 }

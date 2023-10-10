@@ -20,21 +20,19 @@ public class HotelEntity implements SuperEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String hotel_id;
+    @Column(nullable = false)
     private  String hotel_name;
+    @Column(nullable = false)
     private  String hotel_category;
+    @Column(nullable = false)
     private  String location;
+    @Column(nullable = false)
     private  String email;
+    @Column(nullable = false)
     private  int contact_number;
-    @OneToMany(mappedBy = "guide_id",cascade = CascadeType.ALL)
-    private List<GuideEntity> guideEntities=new ArrayList<>();
-    @OneToMany(mappedBy = "user_id",cascade = CascadeType.ALL)
-    private List<UserEntity> userEntities=new ArrayList<>();
 
-    @OneToMany(mappedBy = "vehicle_id",cascade = CascadeType.ALL)
-    private List<VehicleEntity> vehicleEntities=new ArrayList<>();
-
-    @OneToMany(mappedBy = "package_id",cascade = CascadeType.ALL)
-    private List<PackageEntity> packageEntities=new ArrayList<>();
+    @OneToMany(mappedBy = "service_id",cascade =CascadeType.ALL)
+    private List<MainTravelServiceEntity> mainTravelServiceEntities=new ArrayList<>();
 
     public HotelEntity(String hotel_id, String hotel_name, String hotel_category, String location, String email, int contact_number) {
         this.hotel_id = hotel_id;
