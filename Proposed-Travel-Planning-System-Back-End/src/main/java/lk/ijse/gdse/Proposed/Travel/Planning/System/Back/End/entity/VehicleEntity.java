@@ -10,15 +10,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
-@ToString
 @Table(name = "vehicle")
 public class VehicleEntity implements SuperEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String vehicle_id;
+    private int vehicle_id;
     @Column(nullable = false)
     private String vehicle_brand;
     @Column(nullable = false)
@@ -33,15 +32,14 @@ public class VehicleEntity implements SuperEntity{
     private int seat_capacity;
     @Column(nullable = false)
     private String transmission;
-    @OneToMany(mappedBy = "service_id",cascade =CascadeType.ALL)
-    private List<MainTravelServiceEntity> mainTravelServiceEntities=new ArrayList<>();
 
-    @OneToMany(mappedBy = "vehicle_image_id",cascade =CascadeType.ALL)
-    private List<VehicleImageEntity> vehicle_image_id=new ArrayList<>();
-    @OneToOne
-    private DriverEntity driverEntity;
+    @OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<VehicleImageEntity> images;
 
-    public VehicleEntity(String vehicle_id, String vehicle_brand, String vehicle_category, String vehicle_image, String fuel_type, String fuel_usage, int seat_capacity, String transmission) {
+    @OneToMany(mappedBy = "vehicle")
+    private List<MainTravelServiceEntity> mainTravelServiceEntities;
+
+    public VehicleEntity(int vehicle_id, String vehicle_brand, String vehicle_category, String vehicle_image, String fuel_type, String fuel_usage, int seat_capacity, String transmission) {
         this.vehicle_id = vehicle_id;
         this.vehicle_brand = vehicle_brand;
         this.vehicle_category = vehicle_category;
@@ -51,4 +49,5 @@ public class VehicleEntity implements SuperEntity{
         this.seat_capacity = seat_capacity;
         this.transmission = transmission;
     }
+
 }

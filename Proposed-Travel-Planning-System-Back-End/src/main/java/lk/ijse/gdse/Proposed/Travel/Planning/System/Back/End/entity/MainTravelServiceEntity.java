@@ -11,15 +11,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
-@ToString
-@Table(name = "MainTravelService")
+@Table(name = "service")
 public class MainTravelServiceEntity implements SuperEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String service_id;
+    private int service_id;
     @Column(nullable = false)
     private String travel_area;
     @Column(nullable = false)
@@ -44,26 +43,26 @@ public class MainTravelServiceEntity implements SuperEntity {
     private int package_total;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
-    private UserEntity userEntity;
+    @JoinColumn(name = "vehicle_id",referencedColumnName = "vehicle_id")
+    private VehicleEntity vehicle;
 
     @ManyToOne
-    @JoinColumn(name = "guide_id", referencedColumnName = "guide_id")
-    private GuideEntity guideEntity;
+    @JoinColumn(name = "guide_id",referencedColumnName = "guide_id")
+    private GuideEntity guide;
 
     @ManyToOne
-    @JoinColumn(name = "hotel_id", referencedColumnName = "hotel_id")
-    private HotelEntity hotelEntity;
+    @JoinColumn(name = "user_id",referencedColumnName = "user_id")
+    private UserEntity user;
 
     @ManyToOne
-    @JoinColumn(name = "vehicle_id", referencedColumnName = "vehicle_id")
-    private VehicleEntity vehicle_id;
+    @JoinColumn(name = "hotel_id",referencedColumnName = "hotel_id")
+    private HotelEntity hotel;
 
     @ManyToOne
-    @JoinColumn(name = "package_id", referencedColumnName = "package_id")
-    private PackageEntity package_id;
+    @JoinColumn(name = "package_id",referencedColumnName = "package_id")
+    private PackageEntity travelPackage;
 
-    public MainTravelServiceEntity(String service_id, String travel_area, String start_date, String end_date, int no_of_adult, int no_of_child, String need_a_guide_or_no, int total_hed_count, String user_package_start_time, String with_package_or_no, String with_guide_or_no, int package_total) {
+    public MainTravelServiceEntity(int service_id, String travel_area, String start_date, String end_date, int no_of_adult, int no_of_child, String need_a_guide_or_no, int total_hed_count, String user_package_start_time, String with_package_or_no, String with_guide_or_no, int package_total) {
         this.service_id = service_id;
         this.travel_area = travel_area;
         this.start_date = start_date;
@@ -77,4 +76,5 @@ public class MainTravelServiceEntity implements SuperEntity {
         this.with_guide_or_no = with_guide_or_no;
         this.package_total = package_total;
     }
+
 }

@@ -9,15 +9,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @ToString
 public class vehicleImageDTO {
     private String vehicle_image_id;
     private String vehicle_image_name;
 
-    private VehicleEntity vehicle_id;
+    private VehicleEntity vehicleEntity;
 
     public vehicleImageDTO(String vehicle_image_id, String vehicle_image_name) {
         this.vehicle_image_id = vehicle_image_id;

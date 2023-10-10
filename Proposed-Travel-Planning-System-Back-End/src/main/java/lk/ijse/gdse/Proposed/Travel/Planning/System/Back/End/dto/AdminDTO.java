@@ -14,5 +14,4 @@ public class AdminDTO {
     private String UserName;
     private String password;
 
-
 }

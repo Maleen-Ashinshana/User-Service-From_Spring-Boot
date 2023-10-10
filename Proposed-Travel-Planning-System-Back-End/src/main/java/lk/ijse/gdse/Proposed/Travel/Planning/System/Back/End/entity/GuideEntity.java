@@ -5,20 +5,20 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.hibernate.mapping.Array;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
-@ToString
-@Table(name = "Guide")
+@Table(name = "guide")
 public class GuideEntity implements SuperEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String guide_id;
+    private int guide_id;
     @Column(nullable = false)
     private String guide_name;
     @Column(nullable = false)
@@ -31,11 +31,10 @@ public class GuideEntity implements SuperEntity{
     private String gender;
     @Column(nullable = false)
     private String profile_picture;
+    @OneToMany(mappedBy = "guide")
+    private List<MainTravelServiceEntity> mainTravelServiceEntities;
 
-    @OneToMany(mappedBy = "service_id",cascade =CascadeType.ALL)
-    private List<MainTravelServiceEntity> mainTravelServiceEntities=new ArrayList<>();
-
-    public GuideEntity(String guide_id, String guide_name, String address, int age, int contact_number, String gender, String profile_picture) {
+    public GuideEntity(int guide_id, String guide_name, String address, int age, int contact_number, String gender, String profile_picture) {
         this.guide_id = guide_id;
         this.guide_name = guide_name;
         this.address = address;

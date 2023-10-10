@@ -13,12 +13,18 @@ public class Convert {
     public Convert(ModelMapper modelMapper) {
         this.modelMapper = modelMapper;
     }
+    public AdminDTO toadminDTO(AdminEntity adminEntity){
+        return modelMapper.map(adminEntity,AdminDTO.class);
+    }
     public AdminEntity toAdminEntity(AdminDTO adminDTO){
+        return modelMapper.map(adminDTO, AdminEntity.class);
+    }
+/*    public AdminEntity toAdminEntity(AdminDTO adminDTO){
         return modelMapper.map(adminDTO, AdminEntity.class);
     }
     public  AdminDTO toAdminDTO(AdminEntity adminEntity){
         return modelMapper.map(adminEntity, AdminDTO.class);
-    }
+    }*/
 
     public DriverEntity toDriverEntity(DriverDTO driverDTO){
         return modelMapper.map(driverDTO, DriverEntity.class);

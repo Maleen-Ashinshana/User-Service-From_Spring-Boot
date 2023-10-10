@@ -11,15 +11,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
-@ToString
-@Table(name = "Hotel")
+@Table(name = "hotel")
 public class HotelEntity implements SuperEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String hotel_id;
+    private int hotel_id;
     @Column(nullable = false)
     private  String hotel_name;
     @Column(nullable = false)
@@ -31,10 +30,11 @@ public class HotelEntity implements SuperEntity{
     @Column(nullable = false)
     private  int contact_number;
 
-    @OneToMany(mappedBy = "service_id",cascade =CascadeType.ALL)
-    private List<MainTravelServiceEntity> mainTravelServiceEntities=new ArrayList<>();
+    @OneToMany(mappedBy = "hotel")
+    private List<MainTravelServiceEntity> mainTravelServiceEntities;
 
-    public HotelEntity(String hotel_id, String hotel_name, String hotel_category, String location, String email, int contact_number) {
+
+    public HotelEntity(int hotel_id, String hotel_name, String hotel_category, String location, String email, int contact_number) {
         this.hotel_id = hotel_id;
         this.hotel_name = hotel_name;
         this.hotel_category = hotel_category;

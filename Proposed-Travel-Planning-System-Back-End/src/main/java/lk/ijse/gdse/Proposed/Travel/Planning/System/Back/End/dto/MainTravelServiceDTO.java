@@ -9,8 +9,8 @@ import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @ToString
 public class MainTravelServiceDTO {
@@ -30,8 +30,8 @@ public class MainTravelServiceDTO {
     private UserEntity userEntity;
     private GuideEntity guideEntity;
     private HotelEntity hotelEntity;
-    private VehicleEntity vehicle_id;
-    private PackageEntity package_id;
+    private VehicleEntity vehicleEntity;
+    private PackageEntity packageEntity;
 
     public MainTravelServiceDTO(String service_id, String travel_area, String start_date, String end_date, int no_of_adult, int no_of_child, String need_a_guide_or_no, int total_hed_count, String user_package_start_time, String with_package_or_no, String with_guide_or_no, int package_total) {
         this.service_id = service_id;
