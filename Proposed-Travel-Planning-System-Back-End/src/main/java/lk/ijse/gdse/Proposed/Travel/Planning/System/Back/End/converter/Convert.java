@@ -50,12 +50,12 @@ public class Convert {
         return modelMapper.map(driverDTO, DriverDTO.class);
     }
 
-    public GuideEntity toGuiderEntity(GuiderDTO guiderDTO){
+    /*public GuideEntity toGuiderEntity(GuiderDTO guiderDTO){
         return modelMapper.map(guiderDTO, GuideEntity.class);
     }
     public  GuiderDTO toGuiderDTO(GuideEntity guideEntity){
         return modelMapper.map(guideEntity, GuiderDTO.class);
-    }
+    }*/
 
     public HotelEntity toHotelEntity(HotelDTO hotelDTO){
         return modelMapper.map(hotelDTO, HotelEntity.class);
