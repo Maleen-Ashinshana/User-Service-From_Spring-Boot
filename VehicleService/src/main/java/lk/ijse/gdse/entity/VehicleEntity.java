@@ -1,12 +1,10 @@
-package lk.ijse.gdse.Proposed.Travel.Planning.System.Back.End.entity;
+package lk.ijse.gdse.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -34,8 +32,8 @@ public class VehicleEntity implements SuperEntity{
     @OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<VehicleImageEntity> images;
 
-    @OneToMany(mappedBy = "vehicle")
-    private List<MainTravelServiceEntity> mainTravelServiceEntities;
+    /*@OneToMany(mappedBy = "vehicle")
+    private List<MainTravelServiceEntity> mainTravelServiceEntities;*/
 
     public VehicleEntity(int vehicle_id, String vehicle_brand, String vehicle_category,  String fuel_type, String fuel_usage, int seat_capacity, String transmission) {
         this.vehicle_id = vehicle_id;
