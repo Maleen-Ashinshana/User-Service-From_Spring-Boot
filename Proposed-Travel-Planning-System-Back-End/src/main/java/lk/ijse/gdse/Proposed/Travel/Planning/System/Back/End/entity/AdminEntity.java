@@ -7,7 +7,10 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 
+@ToString
 @Table(name = "admin")
 public class AdminEntity implements SuperEntity{
     @Id
@@ -18,26 +21,12 @@ public class AdminEntity implements SuperEntity{
     @Column(nullable = false)
     private String password;
 
-    public AdminEntity() {
-    }
-
-    public AdminEntity(String userName, String password) {
-        UserName = userName;
-        this.password = password;
-    }
-
-    public AdminEntity(String id, String userName, String password) {
-        this.user_id = id;
-        UserName = userName;
-        this.password = password;
-    }
-
-    public String getId() {
+    public String getUser_id() {
         return user_id;
     }
 
-    public void setId(String id) {
-        this.user_id = id;
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
     }
 
     public String getUserName() {

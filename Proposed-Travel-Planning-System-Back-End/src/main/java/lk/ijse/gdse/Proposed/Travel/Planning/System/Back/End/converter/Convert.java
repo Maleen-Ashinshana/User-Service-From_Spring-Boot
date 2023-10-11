@@ -13,18 +13,35 @@ public class Convert {
     public Convert(ModelMapper modelMapper) {
         this.modelMapper = modelMapper;
     }
-    public AdminDTO toadminDTO(AdminEntity adminEntity){
+    public AdminDTO convertToDTO(AdminEntity admin) {
+        System.out.println(admin.getUser_id()+"Entity");
+        System.out.println(admin.getUserName()+"Entity");
+        System.out.println(admin.getPassword()+"Entity");
+        return modelMapper.map(admin, AdminDTO.class);
+    }
+
+    public AdminEntity convertToEntity(AdminDTO adminDTO) {
+        System.out.println(adminDTO.getUser_id()+"DTO");
+        System.out.println(adminDTO.getUserName()+"DTO");
+        System.out.println(adminDTO.getPassword()+"DTO");
+        return modelMapper.map(adminDTO, AdminEntity.class);
+    }
+    /*public AdminDTO toadminDTO(AdminEntity adminEntity){
+        System.out.println(adminEntity.getId()+"*****");
+        System.out.println(adminEntity.getUserName()+"*****");
+        System.out.println(adminEntity.getPassword()+"*****");
         return modelMapper.map(adminEntity,AdminDTO.class);
     }
     public AdminEntity toAdminEntity(AdminDTO adminDTO){
+        System.out.println(adminDTO.getId());
+        System.out.println(adminDTO.getUserName());
+        System.out.println(adminDTO.getPassword());
         return modelMapper.map(adminDTO, AdminEntity.class);
-    }
-/*    public AdminEntity toAdminEntity(AdminDTO adminDTO){
-        return modelMapper.map(adminDTO, AdminEntity.class);
-    }
-    public  AdminDTO toAdminDTO(AdminEntity adminEntity){
-        return modelMapper.map(adminEntity, AdminDTO.class);
+
     }*/
+
+
+
 
     public DriverEntity toDriverEntity(DriverDTO driverDTO){
         return modelMapper.map(driverDTO, DriverEntity.class);

@@ -7,4 +7,7 @@ public interface AdminService {
    AdminDTO getSelectedAdmin(String id);
    void  updateAdmin(AdminDTO adminDTO);
    void  deleteAdmin(String id);
+
+   /* AdminDTO saveAdmin(String id, String userName, String password);*/
+
 }
