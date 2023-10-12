@@ -5,6 +5,7 @@ import lk.ijse.gdse.Proposed.Travel.Planning.System.Back.End.dto.UserDTO;
 import lk.ijse.gdse.Proposed.Travel.Planning.System.Back.End.repo.UserRepository;
 import lk.ijse.gdse.Proposed.Travel.Planning.System.Back.End.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,6 +15,7 @@ public class UserServiceIMPL implements UserService {
     @Autowired
     private Convert convert;
     @Autowired
+   /* @Qualifier("UserRepository")*/
     private UserRepository  userRepository;
 
 
