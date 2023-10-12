@@ -1,15 +1,11 @@
 package lk.ijse.gdse.Proposed.Travel.Planning.System.Back.End.dto;
 
-import jakarta.persistence.*;
-import lk.ijse.gdse.Proposed.Travel.Planning.System.Back.End.entity.HotelEntity;
-import lk.ijse.gdse.Proposed.Travel.Planning.System.Back.End.entity.MainTravelServiceEntity;
-import lk.ijse.gdse.Proposed.Travel.Planning.System.Back.End.entity.VehicleEntity;
+import lk.ijse.gdse.Proposed.Travel.Planning.System.Back.End.entity.BillEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import java.util.ArrayList;
 import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
@@ -26,7 +22,7 @@ public class UserDTO {
     private String nic_or_passport_number;
     private String profile_picture;
 
-    private List<MainTravelServiceEntity> mainTravelServiceEntities;
+    private List<BillEntity> billEntities;
 
     public UserDTO(String user_id, String user_name, String address, String user_registration_time, String email, int age, String password, String nic_or_passport_number, String profile_picture) {
         this.user_id = user_id;

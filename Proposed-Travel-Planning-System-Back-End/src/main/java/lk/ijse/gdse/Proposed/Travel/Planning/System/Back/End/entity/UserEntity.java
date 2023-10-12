@@ -14,6 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @Table(name = "user")
+@ToString
 public class UserEntity implements SuperEntity{
 
     @Id
@@ -36,8 +37,11 @@ private String user_registration_time;
     @Column(nullable = false)
     private String profile_picture;
 
-    @OneToMany(mappedBy = "user")
-    private List<MainTravelServiceEntity> mainTravelServiceEntities;
+    @OneToMany(mappedBy = "userEntity", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<BillEntity> billEntities;
+
+    /*@OneToMany(mappedBy = "user")
+    private List<BillEntity> billEntities=new ArrayList<>();*/
 
 
     public UserEntity(int user_id, String user_name, String address, String user_registration_time, String email, int age, String password, String nic_or_passport_number, String profile_picture) {
