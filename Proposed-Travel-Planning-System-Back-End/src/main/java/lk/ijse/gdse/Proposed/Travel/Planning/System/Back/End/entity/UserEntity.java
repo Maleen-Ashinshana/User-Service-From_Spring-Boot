@@ -34,7 +34,8 @@ private String user_registration_time;
     private String password;
     @Column(nullable = false)
     private String nic_or_passport_number;
-    @Column(nullable = false)
+    @Lob
+    @Column(nullable = false,columnDefinition = "LONGTEXT")
     private String profile_picture;
 
     @OneToMany(mappedBy = "userEntity", cascade = CascadeType.ALL, orphanRemoval = true)

@@ -57,7 +57,7 @@ public class AdminServiceIMPL implements AdminService {
     @Override
     public AdminDTO getSelectedAdmin(String id) {
         if (!adminRepository.existsById(id));
-        return convert.convertToDTO(adminRepository.getById(id));
+        return convert.convertToDTO(adminRepository.findById(id).get());
     }
 
     @Override
