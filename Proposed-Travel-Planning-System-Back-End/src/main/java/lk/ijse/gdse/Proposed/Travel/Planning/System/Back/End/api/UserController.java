@@ -53,16 +53,74 @@ public class UserController {
         return userDTO!=null?ResponseEntity.ok(userDTO):ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
      @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping
+    @DeleteMapping("{user_id}")
     void deleteUser( @RequestPart String user_id){
          System.out.println(user_id+"*****");
         userService.deleteUser(user_id);
      }
-     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @PatchMapping()
-    void  updateUser(@Valid @RequestPart String user_id ,UserDTO userDTO){
-//         System.out.println(userDTO.getUser_id() + "****");
-         userDTO.setUser_id(user_id);
-         userService.updateUser(userDTO);
-     }
+//     @ResponseStatus(HttpStatus.NO_CONTENT)
+//     @PatchMapping("{user_id}")
+//    void  updateUser(
+//
+//             @RequestPart String userName,
+//             @RequestPart String userAddress,
+//             @RequestPart String userRegisterDate,
+//             @RequestPart String userEmail,
+//             @RequestPart String userAge,
+//             @RequestPart String userPassword,
+//             @RequestPart String userNIC,
+//             @RequestPart byte[] userProfile
+//
+//     ){
+//        String uPf=Base64.getEncoder().encodeToString(userProfile);
+//        UserDTO userDTO=new UserDTO();
+//        userDTO.setUser_name(userName);
+//        userDTO.setAddress(userAddress);
+//        userDTO.setUser_registration_time(userRegisterDate);
+//        userDTO.setEmail(userEmail);
+//        userDTO.setAge(Integer.parseInt(userAge));
+//        userDTO.setPassword(userPassword);
+//        userDTO.setNic_or_passport_number(userNIC);
+//        userDTO.setProfile_picture(uPf);
+//
+//        userService.updateUser(userDTO);
+////         System.out.println(userDTO.getUser_id() + "****");
+////         userDTO.setUser_id(user_id);
+////         userService.updateUser(userDTO);
+//
+//     }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PatchMapping("/user_id")
+    void updateUser( @Valid @RequestPart String user_id,
+
+             @RequestPart String userName,
+             @RequestPart String userAddress,
+             @RequestPart String userRegisterDate,
+             @RequestPart String userEmail,
+             @RequestPart String userAge,
+             @RequestPart String userPassword,
+             @RequestPart String userNIC,
+             @RequestPart byte[] userProfile
+
+    ){
+
+        String uPf=Base64.getEncoder().encodeToString(userProfile);
+        UserDTO userDTO=new UserDTO();
+        userDTO.setUser_name(userName);
+        userDTO.setAddress(userAddress);
+        userDTO.setUser_registration_time(userRegisterDate);
+        userDTO.setEmail(userEmail);
+        userDTO.setAge(Integer.parseInt(userAge));
+        userDTO.setPassword(userPassword);
+        userDTO.setNic_or_passport_number(userNIC);
+        userDTO.setProfile_picture(uPf);
+
+        System.out.println(userDTO.getUser_id()+"+******");
+
+
+        userService.updateUser(user_id,userDTO);
+
+
+    }
 }

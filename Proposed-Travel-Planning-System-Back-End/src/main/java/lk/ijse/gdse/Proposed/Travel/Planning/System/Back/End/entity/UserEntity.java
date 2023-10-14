@@ -20,7 +20,7 @@ public class UserEntity implements SuperEntity{
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    private int user_id;
+    private String user_id;
     @Column(nullable = false)
     private String user_name;
     @Column(nullable = false)
@@ -48,7 +48,7 @@ private String user_registration_time;
     private List<BillEntity> billEntities=new ArrayList<>();*/
 
 
-    public UserEntity(int user_id, String user_name, String address, String user_registration_time, String email, int age, String password, String nic_or_passport_number, String profile_picture) {
+    public UserEntity(String user_id, String user_name, String address, String user_registration_time, String email, int age, String password, String nic_or_passport_number, String profile_picture) {
         this.user_id = user_id;
         this.user_name = user_name;
         this.address = address;
