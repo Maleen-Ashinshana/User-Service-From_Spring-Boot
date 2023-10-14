@@ -6,6 +6,7 @@ import lk.ijse.gdse.Proposed.Travel.Planning.System.Back.End.repo.UserRepository
 import lk.ijse.gdse.Proposed.Travel.Planning.System.Back.End.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -46,4 +47,20 @@ public class UserController {
 
         return userService.saveUser(userDTO);
     }
+    @GetMapping
+    ResponseEntity <UserDTO> getUsers(@Valid @RequestPart String user_id){
+        UserDTO userDTO=userService.getSelectedUser(user_id);
+        return userDTO!=null?ResponseEntity.ok(userDTO):ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    }
+     @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping
+    void deleteUser(@Valid @RequestPart String user_id){
+        userService.deleteUser(user_id);
+     }
+     @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PatchMapping()
+    void  updateUser(@Valid @RequestPart String user_id ,UserDTO userDTO){
+         userDTO.setUser_id(user_id);
+         userService.updateUser(userDTO);
+     }
 }

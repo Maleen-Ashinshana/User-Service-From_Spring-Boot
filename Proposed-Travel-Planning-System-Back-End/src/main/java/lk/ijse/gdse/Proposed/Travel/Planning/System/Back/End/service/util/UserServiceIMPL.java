@@ -34,6 +34,11 @@ public class UserServiceIMPL implements UserService {
     }
 
     @Override
+    public UserDTO getByName(String name) {
+        return null;
+    }
+
+    @Override
     public void updateUser(UserDTO userDTO) {
         Optional<UserEntity> user=userRepository.findById(userDTO.getUser_id());
         if (!user.isPresent()){
