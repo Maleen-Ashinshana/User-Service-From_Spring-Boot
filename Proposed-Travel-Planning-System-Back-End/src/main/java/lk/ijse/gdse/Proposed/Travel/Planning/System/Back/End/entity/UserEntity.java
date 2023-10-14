@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.springframework.data.annotation.Id;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,8 +18,8 @@ import java.util.List;
 @ToString
 public class UserEntity implements SuperEntity{
 
-    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
     private int user_id;
     @Column(nullable = false)
     private String user_name;
@@ -40,6 +41,8 @@ private String user_registration_time;
 
     @OneToMany(mappedBy = "userEntity", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<BillEntity> billEntities;
+    @jakarta.persistence.Id
+    private Long id;
 
     /*@OneToMany(mappedBy = "user")
     private List<BillEntity> billEntities=new ArrayList<>();*/
@@ -55,5 +58,13 @@ private String user_registration_time;
         this.password = password;
         this.nic_or_passport_number = nic_or_passport_number;
         this.profile_picture = profile_picture;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
     }
 }

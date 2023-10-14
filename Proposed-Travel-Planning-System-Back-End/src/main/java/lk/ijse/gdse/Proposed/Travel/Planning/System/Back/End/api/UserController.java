@@ -54,12 +54,14 @@ public class UserController {
     }
      @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping
-    void deleteUser(@Valid @RequestPart String user_id){
+    void deleteUser( @RequestPart String user_id){
+         System.out.println(user_id+"*****");
         userService.deleteUser(user_id);
      }
      @ResponseStatus(HttpStatus.NO_CONTENT)
     @PatchMapping()
     void  updateUser(@Valid @RequestPart String user_id ,UserDTO userDTO){
+//         System.out.println(userDTO.getUser_id() + "****");
          userDTO.setUser_id(user_id);
          userService.updateUser(userDTO);
      }

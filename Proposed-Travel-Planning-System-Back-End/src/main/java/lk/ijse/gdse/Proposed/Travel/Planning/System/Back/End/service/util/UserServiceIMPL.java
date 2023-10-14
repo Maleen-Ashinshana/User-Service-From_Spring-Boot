@@ -55,7 +55,7 @@ public class UserServiceIMPL implements UserService {
     }
 
     @Override
-    public void deleteUser(String id) {
-    userRepository.deleteById(id);
+    public void deleteUser(String user_id) {
+    userRepository.deleteById(user_id);
     }
 }
