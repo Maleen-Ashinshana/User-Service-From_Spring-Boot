@@ -14,15 +14,15 @@ public class Convert {
         this.modelMapper = modelMapper;
     }
     public AdminDTO convertToDTO(AdminEntity admin) {
-        System.out.println(admin.getUser_id()+"Entity");
-        System.out.println(admin.getUserName()+"Entity");
-        System.out.println(admin.getPassword()+"Entity");
+//        System.out.println(admin.getUser_id()+"Entity");
+//        System.out.println(admin.getUserName()+"Entity");
+//        System.out.println(admin.getPassword()+"Entity");
         return modelMapper.map(admin, AdminDTO.class);
     }
     public AdminEntity convertToEntity(AdminDTO adminDTO) {
-        System.out.println(adminDTO.getUser_id()+"DTO");
-        System.out.println(adminDTO.getUserName()+"DTO");
-        System.out.println(adminDTO.getPassword()+"DTO");
+//        System.out.println(adminDTO.getUser_id()+"DTO");
+//        System.out.println(adminDTO.getUserName()+"DTO");
+//        System.out.println(adminDTO.getPassword()+"DTO");
         return modelMapper.map(adminDTO, AdminEntity.class);
     }
 

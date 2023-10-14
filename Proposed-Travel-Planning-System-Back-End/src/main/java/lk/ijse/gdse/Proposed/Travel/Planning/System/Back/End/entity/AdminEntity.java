@@ -5,43 +5,19 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.springframework.data.annotation.Id;
 
-@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-
-@ToString
-@Table(name = "admin")
+@Data
 public class AdminEntity implements SuperEntity{
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private String user_id;
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+    private String admin_id;
     @Column(nullable = false)
-    private String UserName;
+    private String admin_name;
     @Column(nullable = false)
     private String password;
 
-    public String getUser_id() {
-        return user_id;
-    }
 
-    public void setUser_id(String user_id) {
-        this.user_id = user_id;
-    }
-
-    public String getUserName() {
-        return UserName;
-    }
-
-    public void setUserName(String userName) {
-        UserName = userName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }

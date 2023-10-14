@@ -11,15 +11,11 @@ import lombok.*;
 @ToString
 public class AdminDTO {
     @Null(message = "Admin Id will auto generate")
-    private String user_id;
+    private String admin_id;
     @NotNull(message = "Admin name cannot be empty")
     @Pattern(regexp = "[A-Za-z ]+")
-    private String userName;
+    private String admin_name;
     @NotNull(message = "Admin Password cannot be empty")
     private String password;
 
-    public AdminDTO(String userName, String password) {
-        this.userName = userName;
-        this.password = password;
-    }
 }

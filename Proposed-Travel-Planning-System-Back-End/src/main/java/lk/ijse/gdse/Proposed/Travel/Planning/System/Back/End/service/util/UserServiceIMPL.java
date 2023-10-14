@@ -39,8 +39,8 @@ public class UserServiceIMPL implements UserService {
     }
 
     @Override
-    public void updateUser(String user_id,UserDTO userDTO) {
-        Optional<UserEntity> user=userRepository.findById(user_id);
+    public void updateUser(UserDTO userDTO) {
+        Optional<UserEntity> user=userRepository.findById(userDTO.getUser_id());
         if (!user.isPresent()){
             user.get().setUser_name(userDTO.getUser_name());
             user.get().setEmail(userDTO.getEmail());

@@ -62,9 +62,9 @@ public class AdminServiceIMPL implements AdminService {
 
     @Override
     public void updateAdmin(AdminDTO adminDTO) {
-        Optional<AdminEntity> adminEntity=adminRepository.findById(adminDTO.getUser_id());
+        Optional<AdminEntity> adminEntity=adminRepository.findById(adminDTO.getAdmin_id());
         if (!adminEntity.isPresent()){
-            adminEntity.get().setUserName(adminDTO.getUserName());
+            adminEntity.get().setAdmin_name(adminDTO.getAdmin_name());
             adminEntity.get().setPassword(adminDTO.getPassword());
         }
     }

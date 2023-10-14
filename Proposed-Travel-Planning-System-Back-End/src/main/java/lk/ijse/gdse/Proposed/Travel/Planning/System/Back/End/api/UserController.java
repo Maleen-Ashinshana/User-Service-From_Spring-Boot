@@ -47,16 +47,26 @@ public class UserController {
 
         return userService.saveUser(userDTO);
     }
-    @GetMapping
+    @GetMapping(value ="{user_id}",produces = MediaType.APPLICATION_JSON_VALUE)
+    UserDTO getSelectUser(@PathVariable String user_id){
+        return userService.getSelectedUser(user_id);
+    }
+
+    /*@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity <UserDTO> getUsers(@Valid @RequestPart String user_id){
         UserDTO userDTO=userService.getSelectedUser(user_id);
         return userDTO!=null?ResponseEntity.ok(userDTO):ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-    }
-     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("{user_id}")
+    }*/
+
+    @DeleteMapping(value = "{user_id}")
     void deleteUser( @RequestPart String user_id){
          System.out.println(user_id+"*****");
         userService.deleteUser(user_id);
+     }
+     @PatchMapping(value = "user_id")
+    void updateUser(@PathVariable String user_id,@RequestBody UserDTO userDTO){
+        userDTO.setUser_id(user_id);
+        userService.updateUser(userDTO);
      }
 //     @ResponseStatus(HttpStatus.NO_CONTENT)
 //     @PatchMapping("{user_id}")
@@ -90,7 +100,7 @@ public class UserController {
 //
 //     }
 
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+/*    @ResponseStatus(HttpStatus.NO_CONTENT)
     @PatchMapping("/user_id")
     void updateUser( @Valid @RequestPart String user_id,
 
@@ -122,5 +132,5 @@ public class UserController {
         userService.updateUser(user_id,userDTO);
 
 
-    }
+    }*/
 }

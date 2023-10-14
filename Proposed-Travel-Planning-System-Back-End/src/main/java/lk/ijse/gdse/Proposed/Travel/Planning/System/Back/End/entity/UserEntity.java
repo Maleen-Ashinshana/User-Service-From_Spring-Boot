@@ -10,16 +10,14 @@ import org.springframework.data.annotation.Id;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Table(name = "user")
-@ToString
-public class UserEntity implements SuperEntity{
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class UserEntity implements SuperEntity{
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String user_id;
     @Column(nullable = false)
     private String user_name;
@@ -41,8 +39,7 @@ private String user_registration_time;
 
     @OneToMany(mappedBy = "userEntity", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<BillEntity> billEntities;
-    @jakarta.persistence.Id
-    private Long id;
+
 
     /*@OneToMany(mappedBy = "user")
     private List<BillEntity> billEntities=new ArrayList<>();*/
@@ -60,11 +57,4 @@ private String user_registration_time;
         this.profile_picture = profile_picture;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
-    }
 }
