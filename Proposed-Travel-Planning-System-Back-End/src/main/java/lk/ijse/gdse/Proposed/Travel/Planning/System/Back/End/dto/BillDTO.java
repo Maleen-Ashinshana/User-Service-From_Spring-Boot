@@ -10,16 +10,10 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@ToString
-@Builder
 public class BillDTO {
     private int bill_id;
-    @Column(nullable = false)
-    private LocalDate date;
+    private String date;
     private AdminEntity adminEntity;
 
-    public BillDTO(int bill_id, LocalDate date) {
-        this.bill_id = bill_id;
-        this.date = date;
-    }
+
 }

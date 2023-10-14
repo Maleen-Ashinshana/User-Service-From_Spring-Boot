@@ -5,29 +5,21 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.springframework.data.annotation.Id;
 
 import java.time.LocalDate;
-@Entity
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Table(name = "bill")
-@ToString
 public class BillEntity implements SuperEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int bill_id;
+@Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String bill_id;
     @Column(nullable = false)
-    private LocalDate date;
+    private String date;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private UserEntity userEntity;
-    /*@ManyToOne
-    @JoinColumn(name = "user_id",referencedColumnName = "user_id")
-    private UserEntity userEntity;*/
 
-    public BillEntity(int bill_id, LocalDate date) {
-        this.bill_id = bill_id;
-        this.date = date;
-    }
 }

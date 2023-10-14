@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/v1/bill")
+@CrossOrigin("*")
 public class BillController {
     private final BillService billService;
 
@@ -19,21 +20,23 @@ public class BillController {
     }
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(consumes = "application/json",produces = "application/json")
-    BillDTO saveBill(@Valid @RequestBody BillDTO billDTO, Errors errors){
-        return null;
+    BillDTO saveBill(@Valid @RequestBody BillDTO billDTO){
+        return billService.saveBill(billDTO);
     }
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<BillDTO> getTravel(@Valid @PathVariable String bill_id){
-        return null;
+    @GetMapping(value = "{bill_id}",produces = MediaType.APPLICATION_JSON_VALUE)
+    BillDTO getBill(@Valid @PathVariable String bill_id){
+        return billService.getSelectBill(bill_id);
     }
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping()
-    void deleteBill(@Valid @PathVariable String bill_id,@RequestBody BillDTO billDTO,Errors errors){
 
+    @DeleteMapping(value = "{bill_id}")
+    void deleteBill(@Valid @PathVariable String bill_id){
+     billService.deleteBill(bill_id);
     }
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @PatchMapping()
-    void updateBill(@Valid @PathVariable String bill_id,@RequestBody BillDTO billDTO,Errors errors){
+
+    @PatchMapping("{bill_id}")
+    void updateBill(@Valid @PathVariable String bill_id,@RequestBody BillDTO billDTO){
+        billDTO.setBill_id(Integer.parseInt(bill_id));
+        billService.updateBill(String.valueOf(billDTO));
 
     }
 }
