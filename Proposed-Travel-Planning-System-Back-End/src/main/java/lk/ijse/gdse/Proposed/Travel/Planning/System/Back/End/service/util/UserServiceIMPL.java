@@ -9,7 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
+import java.util.stream.Collectors;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -57,5 +58,11 @@ public class UserServiceIMPL implements UserService {
     @Override
     public void deleteUser(String user_id) {
     userRepository.deleteById(user_id);
+    }
+
+    @Override
+    public List<UserDTO> getAllUsers() {
+        return null;
+//        return userRepository.findAll().stream().map(::toUserDto).collect(Collectors.toList());
     }
 }
