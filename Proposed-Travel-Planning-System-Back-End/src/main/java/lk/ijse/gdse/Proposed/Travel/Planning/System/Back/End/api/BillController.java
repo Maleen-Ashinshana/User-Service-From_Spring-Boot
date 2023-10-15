@@ -19,24 +19,31 @@ public class BillController {
         this.billService = billService;
     }
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping(consumes = "application/json",produces = "application/json")
-    BillDTO saveBill(@Valid @RequestBody BillDTO billDTO){
-        return billService.saveBill(billDTO);
+    @PostMapping(value = "/{user_id}",consumes = MediaType.MULTIPART_FORM_DATA_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
+    public String saveBill(
+            @PathVariable String user_id,
+            @RequestPart String date){
+
+        BillDTO billDTO=new BillDTO();
+        billDTO.setDate(date);
+        return billService.saveBill(user_id,billDTO).getUser_id();
+
+//        return billService.saveBill(user_id,billDTO);
     }
-    @GetMapping(value = "{bill_id}",produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/{bill_id}",produces = MediaType.APPLICATION_JSON_VALUE)
     BillDTO getBill(@Valid @PathVariable String bill_id){
         return billService.getSelectBill(bill_id);
     }
 
-    @DeleteMapping(value = "{bill_id}")
+    @DeleteMapping(value = "/{bill_id}")
     void deleteBill(@Valid @PathVariable String bill_id){
      billService.deleteBill(bill_id);
     }
 
-    @PatchMapping("{bill_id}")
+    @PatchMapping("/{bill_id}")
     void updateBill(@Valid @PathVariable String bill_id,@RequestBody BillDTO billDTO){
-        billDTO.setBill_id(Integer.parseInt(bill_id));
-        billService.updateBill(String.valueOf(billDTO));
+        billDTO.setBill_id((bill_id));
+        billService.updateBill((billDTO));
 
     }
 }

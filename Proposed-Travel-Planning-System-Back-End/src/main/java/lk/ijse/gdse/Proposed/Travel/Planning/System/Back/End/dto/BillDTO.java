@@ -11,9 +11,9 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Data
 public class BillDTO {
-    private int bill_id;
+    private String bill_id;
     private String date;
-    private AdminEntity adminEntity;
+    private String user_id;
 
 
 }

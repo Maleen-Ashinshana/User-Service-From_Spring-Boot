@@ -8,7 +8,7 @@ import lombok.ToString;
 
 import java.util.List;
 @NoArgsConstructor
-@AllArgsConstructor
+
 @Data
 @ToString
 public class UserDTO {
@@ -22,7 +22,6 @@ public class UserDTO {
     private String nic_or_passport_number;
     private String profile_picture;
 
-    private List<BillEntity> billEntities;
 
     public UserDTO(String user_id, String user_name, String address, String user_registration_time, String email, int age, String password, String nic_or_passport_number, String profile_picture) {
         this.user_id = user_id;
