@@ -8,7 +8,7 @@ public interface UserService {
     UserDTO saveUser(UserDTO userDTO);
     UserDTO getSelectedUser(String id);
     UserDTO getByName(String name);
-    void  updateUser(UserDTO userDTO);
+    void  updateUser(String user_id,UserDTO userDTO);
     void deleteUser(String id);
     List<UserDTO> getAllUsers();
 }

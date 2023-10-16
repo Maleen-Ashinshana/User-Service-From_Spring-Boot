@@ -10,7 +10,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/v1/bill")
+@RequestMapping("/api/v1/bill")
 @CrossOrigin("*")
 public class BillController {
     private final BillService billService;
@@ -40,10 +40,17 @@ public class BillController {
      billService.deleteBill(bill_id);
     }
 
-    @PatchMapping("/{bill_id}")
-    void updateBill(@Valid @PathVariable String bill_id,@RequestBody BillDTO billDTO){
-        billDTO.setBill_id((bill_id));
-        billService.updateBill((billDTO));
+    @PatchMapping(value = "/{bill_id}")
+    public String updateBill(
+            @Valid @PathVariable String bill_id,
+            @RequestPart String date
+
+    ){
+        BillDTO billDTO=new BillDTO();
+        billDTO.setDate(date);
+
+        billService.updateBill(bill_id,billDTO);
+        return String.valueOf(new ResponseEntity<>(HttpStatus.OK));
 
     }
 }

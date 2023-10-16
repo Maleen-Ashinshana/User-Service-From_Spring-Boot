@@ -3,6 +3,7 @@ package lk.ijse.gdse.Proposed.Travel.Planning.System.Back.End.service.util;
 import lk.ijse.gdse.Proposed.Travel.Planning.System.Back.End.converter.Convert;
 import lk.ijse.gdse.Proposed.Travel.Planning.System.Back.End.dto.UserDTO;
 import lk.ijse.gdse.Proposed.Travel.Planning.System.Back.End.entity.UserEntity;
+import lk.ijse.gdse.Proposed.Travel.Planning.System.Back.End.exception.NotFoundException;
 import lk.ijse.gdse.Proposed.Travel.Planning.System.Back.End.repo.UserRepository;
 import lk.ijse.gdse.Proposed.Travel.Planning.System.Back.End.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,11 @@ public class UserServiceIMPL implements UserService {
 
     @Override
     public UserDTO getSelectedUser(String id) {
-        return convert.toUserDTO(userRepository.findById(id).get());
+        Optional<UserEntity> byId = userRepository.findById(id);
+        if (!byId.isPresent()){
+            throw new NotFoundException("The User id cannot be found :"+id);
+        }
+        return convert.toUserDTO(byId.get());
     }
 
     @Override
@@ -40,24 +45,38 @@ public class UserServiceIMPL implements UserService {
     }
 
     @Override
-    public void updateUser(UserDTO userDTO) {
-        Optional<UserEntity> user=userRepository.findById(userDTO.getUser_id());
+    public void updateUser(String user_id,UserDTO userDTO) {
+        Optional<UserEntity> user=userRepository.findById(user_id);
         if (!user.isPresent()){
-            user.get().setUser_name(userDTO.getUser_name());
-            user.get().setEmail(userDTO.getEmail());
-            user.get().setUser_registration_time(userDTO.getUser_registration_time());
-            user.get().setEmail(userDTO.getEmail());
-            user.get().setAddress(userDTO.getAddress());
-            user.get().setPassword(userDTO.getPassword());
-            user.get().setNic_or_passport_number(userDTO.getNic_or_passport_number());
-            user.get().setProfile_picture(userDTO.getProfile_picture());
+            throw new NotFoundException("The User id cannot be found :"+user_id);
+//            user.get().setUser_name(userDTO.getUser_name());
+//            user.get().setEmail(userDTO.getEmail());
+//            user.get().setUser_registration_time(userDTO.getUser_registration_time());
+//            user.get().setEmail(userDTO.getEmail());
+//            user.get().setAddress(userDTO.getAddress());
+//            user.get().setPassword(userDTO.getPassword());
+//            user.get().setNic_or_passport_number(userDTO.getNic_or_passport_number());
+//            user.get().setProfile_picture(userDTO.getProfile_picture());
         }
+        UserEntity userEntity=user.get();
+        userEntity.setUser_name(userDTO.getUser_name());
+        userEntity.setEmail(userDTO.getEmail());
+        userEntity.setUser_registration_time(userDTO.getUser_registration_time());
+        userEntity.setAddress(userDTO.getAddress());
+        userEntity.setPassword(userDTO.getPassword());
+        userEntity.setNic_or_passport_number(userDTO.getNic_or_passport_number());
+        userEntity.setProfile_picture(userDTO.getProfile_picture());
 
+        userRepository.save(userEntity);
     }
 
     @Override
     public void deleteUser(String user_id) {
-    userRepository.deleteById(user_id);
+        Optional<UserEntity> byId = userRepository.findById(user_id);
+        if (!byId.isPresent()){
+            throw new NotFoundException("The User id cannot be found :"+user_id);
+        }
+        userRepository.deleteById(user_id);
     }
 
     @Override

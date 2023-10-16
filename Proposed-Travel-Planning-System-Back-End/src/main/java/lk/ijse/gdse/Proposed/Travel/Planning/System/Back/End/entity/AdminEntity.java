@@ -13,6 +13,7 @@ import org.springframework.data.annotation.Id;
 public class AdminEntity implements SuperEntity{
     @Id
 @GeneratedValue(strategy = GenerationType.UUID)
+
     private String admin_id;
     @Column(nullable = false)
     private String admin_name;
