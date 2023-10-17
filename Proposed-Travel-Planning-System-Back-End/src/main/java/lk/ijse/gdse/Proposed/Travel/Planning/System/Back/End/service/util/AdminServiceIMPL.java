@@ -7,7 +7,6 @@ import lk.ijse.gdse.Proposed.Travel.Planning.System.Back.End.exception.NotFoundE
 import lk.ijse.gdse.Proposed.Travel.Planning.System.Back.End.repo.AdminRepository;
 import lk.ijse.gdse.Proposed.Travel.Planning.System.Back.End.service.AdminService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,7 +29,10 @@ public class AdminServiceIMPL implements AdminService {
 
     @Override
     public AdminDTO saveAdmin(AdminDTO adminDTO) {
-        return convert.convertToDTO(adminRepository.save(convert.convertToEntity(adminDTO)));
+//           if (adminDTO.getAdmin_name()==null||adminDTO.getAdmin_name().isEmpty()){
+//                   throw new ValidationException("Invalid user Name: Name is required"+adminDTO.getAdmin_name());
+//           }
+  return convert.convertToDTO(adminRepository.save(convert.convertToEntity(adminDTO)));
 
     }
 

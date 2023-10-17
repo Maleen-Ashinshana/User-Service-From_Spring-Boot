@@ -24,7 +24,7 @@ public class UserController {
     }
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
-    public UserDTO saveUser(
+    public UserDTO saveUser(@Valid
             @RequestPart String userName,
             @RequestPart String userAddress,
             @RequestPart String userRegisterDate,

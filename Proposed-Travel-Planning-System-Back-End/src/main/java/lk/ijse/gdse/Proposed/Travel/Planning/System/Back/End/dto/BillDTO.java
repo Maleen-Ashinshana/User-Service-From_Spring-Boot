@@ -14,6 +14,7 @@ import java.time.LocalDate;
 public class BillDTO {
     @Null(message = "Bill ID will auto generate")
     private String bill_id;
+    @Null(message = "Bill date will auto generate")
     private String date;
     private String user_id;
 

@@ -21,7 +21,7 @@ public class BillController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(value = "/{user_id}",consumes = MediaType.MULTIPART_FORM_DATA_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
     public String saveBill(
-            @PathVariable String user_id,
+            @Valid @PathVariable String user_id,
             @RequestPart String date){
 
         BillDTO billDTO=new BillDTO();
