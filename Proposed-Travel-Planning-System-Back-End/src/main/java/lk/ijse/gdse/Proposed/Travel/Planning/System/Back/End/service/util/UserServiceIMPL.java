@@ -61,9 +61,10 @@ public class UserServiceIMPL implements UserService {
         UserEntity userEntity=user.get();
         userEntity.setUser_name(userDTO.getUser_name());
         userEntity.setEmail(userDTO.getEmail());
-        userEntity.setUser_registration_time(userDTO.getUser_registration_time());
+        userEntity.setUser_registration_date(userDTO.getUser_registration_date());
         userEntity.setAddress(userDTO.getAddress());
         userEntity.setPassword(userDTO.getPassword());
+        /*userEntity.getGender(userDTO.getGender());*/
         userEntity.setNic_or_passport_number(userDTO.getNic_or_passport_number());
         userEntity.setProfile_picture(userDTO.getProfile_picture());
 

@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class ProposedTravelPlanningSystemBackEndApplication {
 	@Bean
-	public ModelMapper UserModelMapper(){
+	public ModelMapper ModelMapper(){
 		return new ModelMapper();
 	}
 	public static void main(String[] args) {
