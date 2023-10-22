@@ -18,6 +18,7 @@ import java.util.Base64;
 
 @RestController
 @RequestMapping("/api/v1/user")
+@CrossOrigin(origins = "*",allowedHeaders = "*")
 public class UserController {
     private final UserService userService;
 
@@ -52,6 +53,14 @@ public class UserController {
         userDTO.setProfile_picture(profile);
 
         return userService.saveUser(userDTO);
+    }
+    @RequestMapping("/test")
+    @PostMapping()
+
+    public String testSave(){
+        /*System.out.println("");*/
+        String test="Test";
+        return test;
     }
     @GetMapping(value ="/{user_id}",produces = MediaType.APPLICATION_JSON_VALUE)
     UserDTO getSelectUser(@PathVariable String user_id){
