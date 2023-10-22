@@ -33,9 +33,12 @@ public class UserController {
             @RequestPart String userAddress,
             @RequestPart String registerDate,
             @RequestPart String userEmail,
+            @RequestPart String userAge,
+            @RequestPart String contact_number,
             @RequestPart String userGender,
             @RequestPart String userPassword,
             @RequestPart String userNIC,
+            @RequestPart String remark,
             @RequestPart byte[] userProfile
             ){
 
@@ -47,9 +50,12 @@ public class UserController {
         userDTO.setAddress(userAddress);
         userDTO.setUser_registration_date(LocalDate.parse(registerDate));
         userDTO.setEmail(userEmail);
+        userDTO.setAge(userAge);
+        userDTO.setContact_number(contact_number);
         userDTO.setGender(userGender);
         userDTO.setPassword(userPassword);
         userDTO.setNic_or_passport_number(userNIC);
+        userDTO.setRemark(remark);
         userDTO.setProfile_picture(profile);
 
         return userService.saveUser(userDTO);
@@ -80,9 +86,12 @@ public class UserController {
             @RequestPart String userAddress,
             @RequestPart String userRegisterDate,
             @RequestPart String userEmail,
+            @RequestPart String userAge,
+            @RequestPart String contact_number,
             @RequestPart String gender,
             @RequestPart String userPassword,
             @RequestPart String userNIC,
+            @RequestPart String remark,
             @RequestPart byte[] userProfile
 
      ){
@@ -92,9 +101,12 @@ public class UserController {
          userDTO.setAddress(userAddress);
          userDTO.setUser_registration_date(LocalDate.parse(userRegisterDate));
          userDTO.setEmail(userEmail);
+         userDTO.setAge(userAge);
+         userDTO.setContact_number(contact_number);
          userDTO.setGender(gender);
          userDTO.setPassword(userPassword);
          userDTO.setNic_or_passport_number(userNIC);
+         userDTO.setRemark(remark);
          userDTO.setProfile_picture(profile);
 
          userService.updateUser(user_id,userDTO);

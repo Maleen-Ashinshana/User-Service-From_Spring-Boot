@@ -23,16 +23,21 @@ public class UserEntity implements SuperEntity{
     @Column(nullable = false)
     private String address;
     @Column(nullable = false)
-private LocalDate user_registration_date=LocalDate.now();
+   private LocalDate user_registration_date=LocalDate.now();
     @Column(nullable = false)
     private String email;
-
+    @Column(nullable = false)
+    private int age;
+    @Column(nullable = false)
+    private String contact_number;
     @Column(nullable = false)
     private String password;
     @Column(nullable = false)
     private String gender;
     @Column(nullable = false)
     private String nic_or_passport_number;
+    @Column(nullable = false)
+    private String remark;
     @Lob
     @Column(nullable = false,columnDefinition = "LONGTEXT")
     private String profile_picture;
@@ -44,15 +49,18 @@ private LocalDate user_registration_date=LocalDate.now();
     /*@OneToMany(mappedBy = "user")
     private List<BillEntity> billEntities=new ArrayList<>();*/
 
-    public UserEntity(String user_id, String user_name, String address, LocalDate user_registration_date, String email, String password, String gender, String nic_or_passport_number, String profile_picture) {
+    public UserEntity(String user_id, String user_name, String address, LocalDate user_registration_date, String email, int age, String contact_number, String password, String gender, String nic_or_passport_number, String remark, String profile_picture) {
         this.user_id = user_id;
         this.user_name = user_name;
         this.address = address;
         this.user_registration_date = user_registration_date;
         this.email = email;
+        this.age = age;
+        this.contact_number = contact_number;
         this.password = password;
         this.gender = gender;
         this.nic_or_passport_number = nic_or_passport_number;
+        this.remark = remark;
         this.profile_picture = profile_picture;
     }
 }
