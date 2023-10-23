@@ -10,7 +10,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -69,5 +71,10 @@ public class AdminServiceIMPL implements AdminService {
             throw new NotFoundException("Admin Id does not found :"+id);
         }
         adminRepository.deleteById(id);
+    }
+
+    @Override
+    public List<AdminDTO> getAllAdmins() {
+        return adminRepository.findAll().stream().map(admin->convert.convertToDTO(admin)).collect(Collectors.toList());
     }
 }

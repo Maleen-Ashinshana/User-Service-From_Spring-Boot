@@ -13,7 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -66,5 +68,10 @@ public class BillServiceIMPL implements BillService {
             throw new NotFoundException("The Bill ID Does Not Found :" + bill_id);
         }
         billRepo.deleteById(bill_id);
+    }
+
+    @Override
+    public List<BillDTO> getAllBills() {
+        return billRepo.findAll().stream().map(bill->convert.toBillDTO(bill)).collect(Collectors.toList());
     }
 }

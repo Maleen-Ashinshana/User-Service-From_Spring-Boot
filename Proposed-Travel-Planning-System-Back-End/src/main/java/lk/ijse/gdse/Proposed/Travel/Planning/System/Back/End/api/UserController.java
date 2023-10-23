@@ -15,6 +15,7 @@ import org.springframework.web.server.ResponseStatusException;
 import javax.sql.rowset.serial.SerialStruct;
 import java.time.LocalDate;
 import java.util.Base64;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/user")
@@ -73,6 +74,12 @@ public class UserController {
         return userService.getSelectedUser(user_id);
     }
 
+    /*@GetMapping(value = "/{user_name}",produces = MediaType.APPLICATION_JSON_VALUE)
+    UserDTO getUserByUserName(@PathVariable String user_name){
+        System.out.println(user_name+"******");
+        return (UserDTO) userService.getUserByName(user_name);
+    }*/
+
 
     @DeleteMapping(value = "/{user_id}")
     void deleteUser( @RequestPart String user_id){
@@ -112,5 +119,10 @@ public class UserController {
          userService.updateUser(user_id,userDTO);
          return String.valueOf(new ResponseEntity<>(HttpStatus.OK));
 
+     }
+     @GetMapping
+    public  ResponseEntity<List<UserDTO>> getAllUsers(){
+        List<UserDTO> userDTOS=userService.getAllUsers();
+        return new ResponseEntity<>(userDTOS,HttpStatus.OK);
      }
 }

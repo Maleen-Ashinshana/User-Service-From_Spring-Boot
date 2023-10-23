@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Collections;
 import java.util.stream.Collectors;
 import java.util.List;
 import java.util.Optional;
@@ -39,10 +41,11 @@ public class UserServiceIMPL implements UserService {
         return convert.toUserDTO(byId.get());
     }
 
-    @Override
+   /* @Override
     public UserDTO getByName(String name) {
-        return null;
-    }
+
+    }*/
+
 
     @Override
     public void updateUser(String user_id,UserDTO userDTO) {
@@ -82,7 +85,16 @@ public class UserServiceIMPL implements UserService {
 
     @Override
     public List<UserDTO> getAllUsers() {
-        return null;
+        return userRepository.findAll().stream().map(user->convert.toUserDTO(user)).collect(Collectors.toList());
 //        return userRepository.findAll().stream().map(::toUserDto).collect(Collectors.toList());
     }
+
+  /*  @Override
+    public List<UserDTO> getUserByName(String user_name) {
+        Optional<UserEntity> byUsername = userRepository.findByUsername(user_name);
+        if (!byUsername.isPresent()) {
+            throw new NotFoundException("The User with username cannot be found: " + user_name);
+        }
+        return Collections.singletonList(convert.toUserDTO(byUsername.get()));
+    }*/
 }

@@ -2,6 +2,7 @@ package lk.ijse.gdse.Proposed.Travel.Planning.System.Back.End.api;
 
 import jakarta.validation.Valid;
 import lk.ijse.gdse.Proposed.Travel.Planning.System.Back.End.dto.AdminDTO;
+import lk.ijse.gdse.Proposed.Travel.Planning.System.Back.End.dto.UserDTO;
 import lk.ijse.gdse.Proposed.Travel.Planning.System.Back.End.service.AdminService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.awt.*;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/admin")
@@ -38,5 +40,10 @@ public class AdminController {
     void  updateAdmin(@Valid @PathVariable String admin_id,@RequestBody AdminDTO adminDTO){
         adminService.updateAdmin(admin_id,adminDTO);
    }
+    @GetMapping
+    public  ResponseEntity<List<AdminDTO>> getAllUsers(){
+        List<AdminDTO> adminDTOS=adminService.getAllAdmins();
+        return new ResponseEntity<>(adminDTOS,HttpStatus.OK);
+    }
 
 }
