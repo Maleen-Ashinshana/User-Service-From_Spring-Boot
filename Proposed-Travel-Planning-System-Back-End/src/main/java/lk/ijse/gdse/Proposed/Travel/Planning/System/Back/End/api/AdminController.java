@@ -8,13 +8,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.awt.*;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/admin")
-//@CrossOrigin("*")
+@CrossOrigin("*")
 public class AdminController {
     private final AdminService adminService;
 
@@ -25,8 +26,20 @@ public class AdminController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(consumes = "application/json", produces = "application/json")
     AdminDTO save(@Valid @RequestBody AdminDTO adminDTO){
+        System.out.println(adminDTO.getAdmin_name() + "AWA");
+        System.out.println(adminDTO + "waeaeaeaea");
         return adminService.saveAdmin(adminDTO);
     }
+    @RequestMapping("/test")
+    @PostMapping()
+    public String testSave(@RequestBody AdminDTO adminDTO ){
+        /*System.out.println("");*/
+        System.out.println("OK");
+        return adminDTO.getAdmin_name();
+
+
+    }
+
    @GetMapping(value = "/{admin_id}")
    ResponseEntity <AdminDTO> getAdmin( @PathVariable String admin_id){
        AdminDTO selectedAdmin = adminService.getSelectedAdmin(admin_id);

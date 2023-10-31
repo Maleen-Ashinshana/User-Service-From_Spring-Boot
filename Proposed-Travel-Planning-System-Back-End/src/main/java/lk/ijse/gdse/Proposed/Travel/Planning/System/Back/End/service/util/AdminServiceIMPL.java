@@ -34,7 +34,7 @@ public class AdminServiceIMPL implements AdminService {
 //           if (adminDTO.getAdmin_name()==null||adminDTO.getAdmin_name().isEmpty()){
 //                   throw new ValidationException("Invalid user Name: Name is required"+adminDTO.getAdmin_name());
 //           }
-  return convert.convertToDTO(adminRepository.save(convert.convertToEntity(adminDTO)));
+        return convert.convertToDTO(adminRepository.save(convert.convertToEntity(adminDTO)));
 
     }
 

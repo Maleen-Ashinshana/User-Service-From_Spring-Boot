@@ -32,7 +32,6 @@ public class UserController {
     public UserDTO saveUser(@Valid
             @RequestPart String userName,
             @RequestPart String userAddress,
-            @RequestPart String registerDate,
             @RequestPart String userEmail,
             @RequestPart String userAge,
             @RequestPart String contact_number,
@@ -49,7 +48,6 @@ public class UserController {
         UserDTO userDTO=new UserDTO();
         userDTO.setUser_name(userName);
         userDTO.setAddress(userAddress);
-        userDTO.setUser_registration_date(LocalDate.parse(registerDate));
         userDTO.setEmail(userEmail);
         userDTO.setAge(userAge);
         userDTO.setContact_number(contact_number);
@@ -91,7 +89,7 @@ public class UserController {
             @PathVariable String user_id,
             @RequestPart String userName,
             @RequestPart String userAddress,
-            @RequestPart String userRegisterDate,
+
             @RequestPart String userEmail,
             @RequestPart String userAge,
             @RequestPart String contact_number,
@@ -106,7 +104,6 @@ public class UserController {
          UserDTO userDTO=new UserDTO();
          userDTO.setUser_name(userName);
          userDTO.setAddress(userAddress);
-         userDTO.setUser_registration_date(LocalDate.parse(userRegisterDate));
          userDTO.setEmail(userEmail);
          userDTO.setAge(userAge);
          userDTO.setContact_number(contact_number);

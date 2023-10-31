@@ -64,7 +64,7 @@ public class UserServiceIMPL implements UserService {
         UserEntity userEntity=user.get();
         userEntity.setUser_name(userDTO.getUser_name());
         userEntity.setEmail(userDTO.getEmail());
-        userEntity.setUser_registration_date(userDTO.getUser_registration_date());
+
         userEntity.setAddress(userDTO.getAddress());
         userEntity.setPassword(userDTO.getPassword());
         /*userEntity.getGender(userDTO.getGender());*/
@@ -89,12 +89,5 @@ public class UserServiceIMPL implements UserService {
 //        return userRepository.findAll().stream().map(::toUserDto).collect(Collectors.toList());
     }
 
-  /*  @Override
-    public List<UserDTO> getUserByName(String user_name) {
-        Optional<UserEntity> byUsername = userRepository.findByUsername(user_name);
-        if (!byUsername.isPresent()) {
-            throw new NotFoundException("The User with username cannot be found: " + user_name);
-        }
-        return Collections.singletonList(convert.toUserDTO(byUsername.get()));
-    }*/
+
 }
