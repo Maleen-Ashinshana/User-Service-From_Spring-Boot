@@ -1,25 +1,19 @@
 package lk.ijse.gdse.Proposed.Travel.Planning.System.Back.End.api;
 
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotNull;
 import lk.ijse.gdse.Proposed.Travel.Planning.System.Back.End.dto.UserDTO;
-import lk.ijse.gdse.Proposed.Travel.Planning.System.Back.End.repo.UserRepository;
 import lk.ijse.gdse.Proposed.Travel.Planning.System.Back.End.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
-import javax.sql.rowset.serial.SerialStruct;
-import java.time.LocalDate;
 import java.util.Base64;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/user")
-@CrossOrigin(origins = "*",allowedHeaders = "*")
+@CrossOrigin("*")
 public class UserController {
     private final UserService userService;
 
@@ -27,6 +21,36 @@ public class UserController {
         this.userService = userService;
 
     }
+    @PostMapping("/login")
+    public ResponseEntity<String> login(
+            @RequestParam String username,
+            @RequestParam String password
+    ) {
+        // Now you have the username and password in 'username' and 'password' variables
+        // You can perform the necessary validation and processing here
+
+        // For example, you can print them to the console
+        System.out.println("Received username: " + username);
+        System.out.println("Received password: " + password);
+
+        // You can then respond to the client with success/failure
+        return ResponseEntity.ok("{\"success\": true}");
+    }
+    /*@PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody UserDTO loginRequest) {
+        String username = loginRequest.getUser_name();
+        String password = loginRequest.getPassword();
+
+        // Now you have the username and password in 'username' and 'password' variables
+        // You can perform the necessary validation and processing here
+
+        // For example, you can print them to the console
+        System.out.println("Received username: " + username);
+        System.out.println("Received password: " + password);
+
+        // You can then respond to the client with success/failure
+        return ResponseEntity.ok("{\"success\": true}");
+    }*/
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
     public UserDTO saveUser(@Valid
@@ -70,6 +94,7 @@ public class UserController {
     @GetMapping(value ="/{user_id}",produces = MediaType.APPLICATION_JSON_VALUE)
     UserDTO getSelectUser(@PathVariable String user_id){
         return userService.getSelectedUser(user_id);
+
     }
 
     /*@GetMapping(value = "/{user_name}",produces = MediaType.APPLICATION_JSON_VALUE)
@@ -121,5 +146,11 @@ public class UserController {
     public  ResponseEntity<List<UserDTO>> getAllUsers(){
         List<UserDTO> userDTOS=userService.getAllUsers();
         return new ResponseEntity<>(userDTOS,HttpStatus.OK);
+     }
+
+     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public String getUser(@RequestPart String userId){
+
+        return "OK";
      }
 }
