@@ -7,11 +7,9 @@ import lk.ijse.gdse.Proposed.Travel.Planning.System.Back.End.exception.NotFoundE
 import lk.ijse.gdse.Proposed.Travel.Planning.System.Back.End.repo.UserRepository;
 import lk.ijse.gdse.Proposed.Travel.Planning.System.Back.End.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collections;
 import java.util.stream.Collectors;
 import java.util.List;
 import java.util.Optional;
@@ -62,7 +60,7 @@ public class UserServiceIMPL implements UserService {
 //            user.get().setProfile_picture(userDTO.getProfile_picture());
         }
         UserEntity userEntity=user.get();
-        userEntity.setUser_name(userDTO.getUser_name());
+        userEntity.setName(userDTO.getName());
         userEntity.setEmail(userDTO.getEmail());
 
         userEntity.setAddress(userDTO.getAddress());
@@ -88,6 +86,24 @@ public class UserServiceIMPL implements UserService {
         return userRepository.findAll().stream().map(user->convert.toUserDTO(user)).collect(Collectors.toList());
 //        return userRepository.findAll().stream().map(::toUserDto).collect(Collectors.toList());
     }
+
+    @Override
+    public UserEntity getUserByUsername(String userName) {
+        UserEntity userEntityByName = userRepository.findUserEntityByName(userName);
+        return userEntityByName;
+//        /*userRepository.*/
+        /*userRepository.findByUser_nameIgnoreCase(userName);*/
+//        return userName;
+    }
+
+    /*@Override
+    public boolean authenticateUser(String username, String password) {
+        Optional<UserEntity> byUserName = userRepository.findById(username);
+        if (byUserName!=null&& byUserName.get().equals(password)){
+            return true;
+        }
+        return false;
+    }*/
 
 
 }

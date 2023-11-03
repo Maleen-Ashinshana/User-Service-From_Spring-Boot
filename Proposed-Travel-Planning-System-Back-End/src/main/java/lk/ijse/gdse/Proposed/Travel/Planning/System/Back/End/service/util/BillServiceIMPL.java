@@ -31,7 +31,7 @@ public class BillServiceIMPL implements BillService {
     public BillDTO saveBill(String user_id, BillDTO billDTO) {
         UserEntity userEntity = userRepository.findById(user_id).orElseThrow();
         BillEntity bill = convert.toBillEntity(billDTO);
-        bill.setUserEntity(userEntity);
+        bill.setUser_id(userEntity.getUser_id());
         BillDTO BillDTO = convert.toBillDTO(billRepo.save(bill));
         System.out.println(billDTO);
         return BillDTO;
@@ -42,7 +42,7 @@ public class BillServiceIMPL implements BillService {
     public BillDTO getSelectBill(String bill_id) {
         BillEntity billEntity = billRepo.findById(bill_id).orElseThrow(() -> new NotFoundException("The Bill Id Not Found :" + bill_id));
         BillDTO billDTO = convert.toBillDTO(billEntity);
-        billDTO.setUser_id(billEntity.getUserEntity().getUser_id());
+        billDTO.setUser_id(billEntity.getUser_id());
         return billDTO;
         //return convert.toBillDTO(billRepo.findById(bill_id).get());
     }

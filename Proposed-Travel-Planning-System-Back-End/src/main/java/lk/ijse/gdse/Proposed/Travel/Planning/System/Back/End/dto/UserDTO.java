@@ -1,14 +1,13 @@
 package lk.ijse.gdse.Proposed.Travel.Planning.System.Back.End.dto;
 
 import jakarta.validation.constraints.*;
-import lk.ijse.gdse.Proposed.Travel.Planning.System.Back.End.entity.BillEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.time.LocalDate;
-import java.util.List;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -18,7 +17,7 @@ public class UserDTO {
     private String user_id;
     @NotNull(message = "user name cannot be empty")
     @Pattern(regexp = "[A-Za-z ]$")
-    private String user_name;
+    private String name;
     @NotNull(message = "user Address cannot be empty")
     private String address;
 

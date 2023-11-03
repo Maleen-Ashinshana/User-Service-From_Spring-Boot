@@ -5,10 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.springframework.data.annotation.Id;
 
 import java.time.LocalDate;
-
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -18,8 +17,8 @@ public class BillEntity implements SuperEntity {
     private String bill_id;
     @Column(nullable = false)
     private String date;
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private UserEntity userEntity;
+    /*@ManyToOne
+    @JoinColumn(name = "user_id")*/
+    private String user_id;
 
 }

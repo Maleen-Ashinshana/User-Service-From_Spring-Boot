@@ -1,7 +1,9 @@
 package lk.ijse.gdse.Proposed.Travel.Planning.System.Back.End.api;
 
 import jakarta.validation.Valid;
+import lk.ijse.gdse.Proposed.Travel.Planning.System.Back.End.converter.Convert;
 import lk.ijse.gdse.Proposed.Travel.Planning.System.Back.End.dto.UserDTO;
+import lk.ijse.gdse.Proposed.Travel.Planning.System.Back.End.entity.UserEntity;
 import lk.ijse.gdse.Proposed.Travel.Planning.System.Back.End.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -14,27 +16,78 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/user")
 @CrossOrigin("*")
+
 public class UserController {
     private final UserService userService;
-
-    public UserController(UserService userService) {
+private final Convert convert;
+    public UserController(UserService userService, Convert convert) {
         this.userService = userService;
 
+        this.convert = convert;
     }
-    @PostMapping("/login")
-    public ResponseEntity<String> login(
-            @RequestParam String username,
-            @RequestParam String password
-    ) {
-        // Now you have the username and password in 'username' and 'password' variables
-        // You can perform the necessary validation and processing here
+   /* @PostMapping("/login")*/
+   /*@PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody UserDTO userCredentials) {
+        String username = userCredentials.getUser_name();
+        String password = userCredentials.getPassword();
 
-        // For example, you can print them to the console
-        System.out.println("Received username: " + username);
+        boolean authenticated = userService.authenticateUser(username, password);
+
+        if (authenticated) {
+            return ResponseEntity.ok("{\"message\": \"Authentication successful.\"}");
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"message\": \"Authentication failed.\"}");
+        }
+    }*/
+
+        /*@Autowired
+        private UserService userService;*/
+
+    /*@PostMapping("/login")
+        public ResponseEntity<String> login(@RequestBody Map<String, String> credentials) {
+            String username = credentials.get("username");
+            String password = credentials.get("password");
+
+            boolean authenticated = userService.authenticateUser(username, password);
+
+            if (authenticated) {
+                return ResponseEntity.ok("{\"message\": \"Authentication successful.\"}");
+            } else {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"message\": \"Authentication failed.\"}");
+            }
+        }*/
+
+    // Now you have the username and password in 'username' and 'password' variables
+    // You can perform the necessary validation and processing here
+
+    // For example, you can print them to the console
+     /*   System.out.println("Received username: " + user_name);
         System.out.println("Received password: " + password);
 
         // You can then respond to the client with success/failure
-        return ResponseEntity.ok("{\"success\": true}");
+        return ResponseEntity.ok("{\"success\": true}");*/
+    /* UserEntity userEntity=userService.getUserByUsername(user_name);*/
+    @PostMapping("/login")
+    public ResponseEntity<UserDTO> login(
+            @RequestParam String user_name,
+            @RequestParam String password
+
+    ) {
+
+        UserEntity userByUsername = userService.getUserByUsername(user_name);
+        if (userByUsername != null) {
+            // User found; compare the provided password with the stored password
+            if (userByUsername.getPassword().equals(password)) {
+                UserDTO userDTO = convert.toUserDTO(userByUsername);
+                // Passwords match; authentication successful
+                /*return ResponseEntity.ok("{\"message\": \"Authentication successful.\"}");*/
+                return ResponseEntity.status(HttpStatus.OK).body(userDTO);
+            }
+        }
+
+        // User not found or password mismatch; authentication failed
+        return (ResponseEntity<UserDTO>) ResponseEntity.status(HttpStatus.UNAUTHORIZED);
+       /* return null;*/
     }
     /*@PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody UserDTO loginRequest) {
@@ -70,7 +123,7 @@ public class UserController {
        /* registerDate=LocalDate.now();*/
        /* @NotNull(message = "user register cannot be empty") LocalDate date=registerDate.toString();*/
         UserDTO userDTO=new UserDTO();
-        userDTO.setUser_name(userName);
+        userDTO.setName(userName);
         userDTO.setAddress(userAddress);
         userDTO.setEmail(userEmail);
         userDTO.setAge(userAge);
@@ -127,7 +180,7 @@ public class UserController {
      ){
          String profile= Base64.getEncoder().encodeToString(userProfile);
          UserDTO userDTO=new UserDTO();
-         userDTO.setUser_name(userName);
+         userDTO.setName(userName);
          userDTO.setAddress(userAddress);
          userDTO.setEmail(userEmail);
          userDTO.setAge(userAge);

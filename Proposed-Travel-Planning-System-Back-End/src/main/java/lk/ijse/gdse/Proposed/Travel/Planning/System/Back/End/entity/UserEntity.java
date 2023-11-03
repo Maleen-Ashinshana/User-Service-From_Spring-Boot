@@ -1,25 +1,21 @@
 package lk.ijse.gdse.Proposed.Travel.Planning.System.Back.End.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
 
-import java.time.LocalDate;
-import java.util.List;
-
-
-@AllArgsConstructor
+/*@Document(collection = "users")*/
+/*@Entity*/
+/*@AllArgsConstructor*/
 @NoArgsConstructor
 @Data
-
+/*@Document( collation = "userEntity")*/
 public class UserEntity implements SuperEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String user_id;
     @Column(nullable = false)
-    private String user_name;
+    private String name;
     @Column(nullable = false)
     private String address;
     @Column(nullable = false)
@@ -40,16 +36,17 @@ public class UserEntity implements SuperEntity{
     @Column(nullable = false,columnDefinition = "LONGTEXT")
     private String profile_picture;
 
-    @OneToMany(mappedBy = "userEntity", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<BillEntity> billEntities;
+    /*@OneToMany(mappedBy = "userEntity", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<BillEntity> billEntities;*/
+
 
 
     /*@OneToMany(mappedBy = "user")
     private List<BillEntity> billEntities=new ArrayList<>();*/
 
-    public UserEntity(String user_id, String user_name, String address, String email, int age, String contact_number, String password, String gender, String nic_or_passport_number, String remark, String profile_picture) {
+    public UserEntity(String user_id, String name, String address, String email, int age, String contact_number, String password, String gender, String nic_or_passport_number, String remark, String profile_picture) {
         this.user_id = user_id;
-        this.user_name = user_name;
+        this.name = name;
         this.address = address;
 
         this.email = email;
@@ -61,4 +58,6 @@ public class UserEntity implements SuperEntity{
         this.remark = remark;
         this.profile_picture = profile_picture;
     }
+
+
 }
