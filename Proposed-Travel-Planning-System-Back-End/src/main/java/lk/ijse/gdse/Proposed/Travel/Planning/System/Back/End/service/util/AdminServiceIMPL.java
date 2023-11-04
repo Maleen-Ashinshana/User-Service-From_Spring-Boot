@@ -31,9 +31,9 @@ public class AdminServiceIMPL implements AdminService {
 
     @Override
     public AdminDTO saveAdmin(AdminDTO adminDTO) {
-//           if (adminDTO.getAdmin_name()==null||adminDTO.getAdmin_name().isEmpty()){
-//                   throw new ValidationException("Invalid user Name: Name is required"+adminDTO.getAdmin_name());
-//           }
+        System.out.println(adminDTO.getAdmin_id() +"Service");
+        System.out.println(adminDTO.getRoleType()+"ROLE");
+
         return convert.convertToDTO(adminRepository.save(convert.convertToEntity(adminDTO)));
 
     }
@@ -57,7 +57,7 @@ public class AdminServiceIMPL implements AdminService {
             adminEntity.get().setPassword(adminDTO.getPassword());*/
         }
         AdminEntity admin=adminEntity.get();
-        admin.setAdmin_name(adminDTO.getAdmin_name());
+        admin.setName(adminDTO.getName());
         admin.setPassword(adminDTO.getPassword());
 
         adminRepository.save(admin);
@@ -76,5 +76,18 @@ public class AdminServiceIMPL implements AdminService {
     @Override
     public List<AdminDTO> getAllAdmins() {
         return adminRepository.findAll().stream().map(admin->convert.convertToDTO(admin)).collect(Collectors.toList());
+    }
+
+    @Override
+    public AdminEntity getAdminByRole(String role) {
+        AdminEntity adminEntityByRole = adminRepository.findAdminEntityByRoleType(role);
+        return adminEntityByRole;
+    }
+
+    @Override
+    public AdminEntity getAdminByName(String userName) {
+        AdminEntity adminEntityByName = adminRepository.findAdminEntityByName(userName);
+
+        return adminEntityByName;
     }
 }

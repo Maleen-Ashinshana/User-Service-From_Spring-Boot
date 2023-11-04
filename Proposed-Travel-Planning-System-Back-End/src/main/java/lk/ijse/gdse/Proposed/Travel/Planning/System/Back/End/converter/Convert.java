@@ -17,12 +17,11 @@ public class Convert {
 //        System.out.println(admin.getUser_id()+"Entity");
 //        System.out.println(admin.getUserName()+"Entity");
 //        System.out.println(admin.getPassword()+"Entity");
+        System.out.println(admin.getAdmin_id()+ "Converter");
         return modelMapper.map(admin, AdminDTO.class);
     }
     public AdminEntity convertToEntity(AdminDTO adminDTO) {
-//        System.out.println(adminDTO.getUser_id()+"DTO");
-//        System.out.println(adminDTO.getUserName()+"DTO");
-//        System.out.println(adminDTO.getPassword()+"DTO");
+
         return modelMapper.map(adminDTO, AdminEntity.class);
     }
 

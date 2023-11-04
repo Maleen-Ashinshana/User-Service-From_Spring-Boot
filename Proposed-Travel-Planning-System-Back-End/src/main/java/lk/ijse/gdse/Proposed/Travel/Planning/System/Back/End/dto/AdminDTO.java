@@ -1,15 +1,7 @@
 package lk.ijse.gdse.Proposed.Travel.Planning.System.Back.End.dto;
 
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Null;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
-import jdk.dynalink.linker.LinkerServices;
-import lk.ijse.gdse.Proposed.Travel.Planning.System.Back.End.entity.AdminType;
+import jakarta.validation.constraints.*;
 import lombok.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,19 +10,19 @@ public class AdminDTO {
     @Null(message = "Admin Id will auto generate")
     private String admin_id;
     @Pattern(regexp = "[A-Za-z ]+",message = "Admin name cannot be empty")
-    private String admin_name;
+    private String name;
     @NotNull(message = "Admin Password cannot be empty")@Size(min = 5,max = 8)
     private String password;
-    private String role;
-
-    public AdminDTO(String admin_id, String admin_name, String password) {
+    /*@NotBlank(message = "Role is required")*/
+    private String roleType;
+    public AdminDTO(String admin_id, String name, String password) {
         this.admin_id = admin_id;
-        this.admin_name = admin_name;
+        this.name = name;
         this.password = password;
     }
 
-    public AdminDTO(String admin_name, String password) {
-        this.admin_name = admin_name;
+    public AdminDTO(String name, String password) {
+        this.name = name;
         this.password = password;
     }
 }

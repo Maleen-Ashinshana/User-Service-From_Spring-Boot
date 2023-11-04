@@ -1,3 +1,4 @@
+/*
 package lk.ijse.gdse.Proposed.Travel.Planning.System.Back.End.entity;
 
 import org.springframework.stereotype.Service;
@@ -11,7 +12,7 @@ public class Admin {
         public String login(String username, String password,String role) {
             for (AdminEntity user : users) {
            if (user.getRole().equals(role)) {
-               if (user.getAdmin_name().equals(username)) {
+               if (user.getName().equals(username)) {
                    if (user.getPassword().equals(password)) {
                        if (user.getRole().equals("admin")) {
                            return "Login successful as admin.";
@@ -35,3 +36,4 @@ public class Admin {
 
 
 
+*/

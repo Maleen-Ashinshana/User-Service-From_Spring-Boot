@@ -107,7 +107,7 @@ private final Convert convert;
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
     public UserDTO saveUser(@Valid
-            @RequestPart String userName,
+            @RequestPart String name,
             @RequestPart String userAddress,
             @RequestPart String userEmail,
             @RequestPart String userAge,
@@ -123,7 +123,7 @@ private final Convert convert;
        /* registerDate=LocalDate.now();*/
        /* @NotNull(message = "user register cannot be empty") LocalDate date=registerDate.toString();*/
         UserDTO userDTO=new UserDTO();
-        userDTO.setName(userName);
+        userDTO.setName(name);
         userDTO.setAddress(userAddress);
         userDTO.setEmail(userEmail);
         userDTO.setAge(userAge);

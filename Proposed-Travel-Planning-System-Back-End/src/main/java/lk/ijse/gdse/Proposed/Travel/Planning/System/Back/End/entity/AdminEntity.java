@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 import org.springframework.data.annotation.Id;
 
 @AllArgsConstructor
@@ -12,16 +11,14 @@ import org.springframework.data.annotation.Id;
 @Data
 public class AdminEntity implements SuperEntity{
     @Id
-@GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private String admin_id;
     @Column(nullable = false)
-    private String admin_name;
+    private String name;
     @Column(nullable = false)
     private String password;
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "role") // The name of the foreign key column in AdminEntity
-    private AdminType role;
-
-
+    @JoinColumn(name = "roleType")
+    private Role roleType;
 
 }
